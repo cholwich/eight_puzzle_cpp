@@ -10,7 +10,6 @@ tuple<shared_ptr<Node>, int> uniform_cost_graph_search()
 	auto initial_node = make_shared<Node>(initial_state(), nullptr, "", 0, 0);
 	vector<shared_ptr<Node>> frontier;
 	unordered_set<shared_ptr<State>, StateHash, StateEq> explored;
-	// set<shared_ptr<State>, StateLess> explored;
 	int n_visits = 0;
 
 	frontier.push_back(initial_node);
@@ -24,7 +23,6 @@ tuple<shared_ptr<Node>, int> uniform_cost_graph_search()
 		else
 		{
 			n_visits++;
-			// heappop(frontier)
 			auto node = frontier.front();
 			pop_heap(frontier.begin(), frontier.end(), compare_node);
 			frontier.pop_back();
