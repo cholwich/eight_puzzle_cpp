@@ -27,6 +27,18 @@ struct State
 	};
 };
 
+struct StateHash {
+	size_t operator()(shared_ptr<State> const& s) const	
+	{
+		int h = 0;
+		for(int i=0; i<9; i++) {
+			h *= 10;
+			h += s->board[i];
+		}
+		return h;
+	}
+};
+
 struct StateEq {
 	bool operator()(shared_ptr<State> const left, shared_ptr<State> const right) const {
 		return (*left).hash == (*right).hash;
